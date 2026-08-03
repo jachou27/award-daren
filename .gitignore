@@ -23,3 +23,9 @@ data/processed/*
 # Keep empty data folders later
 !data/raw/.gitkeep
 !data/processed/.gitkeep
+
+
+# R
+.Rhistory
+.RData
+.Ruserdata

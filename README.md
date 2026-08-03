@@ -1,41 +1,60 @@
-# Hotel Award Data Platform
+# Award Daren
 
-An end-to-end data engineering project that collects, stores, transforms, and analyzes Hyatt award availability and pricing data.
+> Intelligent hotel award search platform powered by a modern data engineering platform.
 
-## Project Status
+Award Daren helps travelers discover hotel award availability, analyze historical pricing, and make smarter redemption decisions.
 
-Sprint 0 — Foundation and System Design
+Version 1 focuses on Hyatt and serves as the foundation for future AI-powered travel planning.
 
-## Initial Goals
+---
 
-- Collect Hyatt award availability and pricing data
-- Preserve raw source data
-- Load data into PostgreSQL
-- Build analytics-ready data models
-- Automate pipeline execution
-- Monitor data quality and pipeline health
-- Create dashboards for award availability and redemption value
+## Features
 
-## Planned Technology Stack
+- Historical Hyatt award availability
+- Monthly availability calendar
+- Points vs. cash price comparison
+- Historical pricing trends
+- SQL analytics
+- AI assistant (coming soon)
+
+---
+
+## Tech Stack
 
 - Python
 - PostgreSQL
 - Docker
-- dbt
-- Apache Airflow
-- AWS
-- GitHub Actions
+- SQL
+- dbt (planned)
+- Apache Airflow (planned)
+- FastAPI (planned)
+- React (planned)
 
-## Project Roadmap
+---
 
-- Sprint 0: Foundation and system design
-- Sprint 1: Data ingestion MVP
-- Sprint 2: Data warehouse and dbt
-- Sprint 3: Orchestration and data quality
-- Sprint 4: Analytics and dashboard
-- Sprint 5: Cloud deployment
-- Sprint 6: Optional AI interface
+## Project Status
 
-## License
+Current Sprint: Sprint 0 – Foundation
 
-This project is licensed under the MIT License.
+- ✅ Project Vision
+- 🚧 Data Source Research
+- ⏳ Database Design
+- ⏳ System Architecture
+
+---
+
+## Roadmap
+
+- Version 1 — Hyatt Foundation
+- Version 2 — Hyatt Search Experience
+- Version 3 — Hyatt AI Assistant
+- Version 4 — Multi-Provider Platform
+
+---
+
+## Documentation
+
+- Product Vision
+- Data Source Research
+- Architecture
+- Database Design
