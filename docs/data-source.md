@@ -89,6 +89,7 @@ Possible options include:
 - What are the rate limits?
 - What data validation is required?
 
+
 ### Hyatt Website Fetch/XHR Feasibility Test
 
 A manual Chrome DevTools Network inspection was performed to evaluate whether Hyatt website responses expose room type and points pricing data for a selected Japanese Hyatt property.
@@ -180,3 +181,25 @@ This test was performed through manual Chrome DevTools inspection only.
 No authentication bypass, CAPTCHA bypass, rate-limit circumvention, automated scraping, or access-control bypass was attempted. Sensitive headers, cookies, session identifiers, and authorization values were not recorded.
 
 Production use would require further review, including Hyatt Terms of Service, legal/compliance considerations, rate-limit behavior, reliability testing, monitoring, and a compliant ingestion strategy.
+
+
+
+## Decision
+
+Selected data source: Hyatt website room rates JSON endpoint for prototype research.
+
+## Ingestion Strategy
+
+Manual-first prototype collection using the observed request structure, limited to the approved testing scope.
+
+For production, automation should not proceed until Hyatt Terms of Service, legal/compliance constraints, rate-limit behavior, and access-control requirements have been reviewed.
+
+## Risks
+
+- Terms of Service restrictions
+- Endpoint instability or undocumented API changes
+- Anti-bot or CAPTCHA controls
+- Rate limits or request throttling
+- Data quality issues
+- Room type and rate plan mapping changes
+- Maintenance burden from website or response schema changes
