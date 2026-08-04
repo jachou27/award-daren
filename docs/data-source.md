@@ -88,3 +88,95 @@ Possible options include:
 - How frequently should data be collected?
 - What are the rate limits?
 - What data validation is required?
+
+### Hyatt Website Fetch/XHR Feasibility Test
+
+A manual Chrome DevTools Network inspection was performed to evaluate whether Hyatt website responses expose room type and points pricing data for a selected Japanese Hyatt property.
+
+#### Test Scope
+
+- Property: Park Hyatt Niseko Hanazono, Japan
+- Property code / spirit code: `ctsph`
+- Search type: Points / award availability
+- Rooms: `1`
+- Adults: `2`
+- Kids: `0`
+- Test dates: `2026-08-22` to `2026-08-23`
+
+#### Observed Request
+
+A likely room rates endpoint was identified during the points booking search.
+
+- Method: `GET`
+- Status: `200 OK`
+- Endpoint path: `/en-US/shop/service/rooms/roomrates/ctsph`
+
+Example request URL:
+
+```text
+https://www.hyatt.com/en-US/shop/service/rooms/roomrates/ctsph?spiritCode=ctsph&rooms=1&adults=2&checkinDate=2026-08-22&checkoutDate=2026-08-23&kids=0&accessibilityCheck=false&rate=Standard&suiteUpgrade=true
+```
+
+Important query parameters:
+
+```text
+spiritCode=ctsph
+rooms=1
+adults=2
+checkinDate=2026-08-22
+checkoutDate=2026-08-23
+kids=0
+accessibilityCheck=false
+rate=Standard
+suiteUpgrade=true
+```
+
+#### Observed Response Fields
+
+The JSON response includes room type information and points pricing fields.
+
+Relevant fields observed:
+
+```text
+roomTypeCode
+roomCategory
+roomQuantity
+roomType.code
+roomType.title
+roomType.description
+roomType.type
+ratePlans[].ratePlanCategory
+ratePlans[].points
+ratePlans[].avgPoints
+ratePlans[].totalPoints
+currencyCode
+```
+
+Observed example:
+
+```text
+roomTypeCode: KGST
+roomCategory: STANDARD
+roomQuantity: 1
+roomType.title: Suite, 1 King Bed
+roomType.type: Suites
+ratePlans[].ratePlanCategory: POINTS
+ratePlans[].points: 45000
+ratePlans[].avgPoints: 45000
+ratePlans[].totalPoints: 45000
+currencyCode: JPY
+```
+
+#### Feasibility Finding
+
+The Hyatt website response appears to contain the core data needed for the prototype: room type, room category, availability-related room quantity, and points pricing.
+
+This suggests Hyatt website Network responses may be feasible as an initial prototype data source for award availability research.
+
+#### Limitations and Compliance Notes
+
+This test was performed through manual Chrome DevTools inspection only.
+
+No authentication bypass, CAPTCHA bypass, rate-limit circumvention, automated scraping, or access-control bypass was attempted. Sensitive headers, cookies, session identifiers, and authorization values were not recorded.
+
+Production use would require further review, including Hyatt Terms of Service, legal/compliance considerations, rate-limit behavior, reliability testing, monitoring, and a compliant ingestion strategy.
