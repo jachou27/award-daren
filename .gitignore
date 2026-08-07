@@ -8,6 +8,7 @@ venv/
 # Environment variables
 .env
 .env.*
+!.env.example
 
 # IDE
 .vscode/
@@ -20,10 +21,9 @@ venv/
 data/raw/*
 data/processed/*
 
-# Keep empty data folders later
+# Keep empty data folders
 !data/raw/.gitkeep
 !data/processed/.gitkeep
-
 
 # R
 .Rhistory
