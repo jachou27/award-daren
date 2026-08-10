@@ -1,11 +1,9 @@
 # Hyatt Test Fixtures
 
-## `hyatt_availability_sample.json`
+These fixtures contain representative Hyatt availability responses captured
+for development and testing.
 
-Representative Hyatt award availability response captured for development
-and testing.
-
-### Source
+## Property
 
 - Property: Hyatt Regency Waikiki Beach Resort and Spa
 - Property code: `hnlrw`
@@ -14,22 +12,51 @@ and testing.
 - Rooms: 1
 - Adults: 2
 - Children: 0
-- Search type: World of Hyatt points
-- Captured from: Hyatt.com booking flow
-- Endpoint: `/en-US/shop/service/rooms/roomrates/hnlrw`
 
-### Capture Method
+## `hyatt_award_availability_sample.json`
 
-The response was captured from the browser developer tools Network tab
-using a Fetch/XHR request generated during an award availability search.
+Captured from a World of Hyatt award availability search.
 
-Only the JSON response body was saved. Request headers, cookies,
+The response includes:
+
+- Room types
+- Award availability
+- Points pricing
+- Points + Cash pricing
+- Currency information
+
+The request used the Hyatt room-rates endpoint with the World of Hyatt
+rate filter.
+
+## `hyatt_cash_availability_sample.json`
+
+Captured from a standard cash availability search.
+
+The response includes:
+
+- Room types
+- Member cash rates
+- Public cash rates
+- Taxes and fees
+- Stay totals
+- Currency information
+
+The request used the Hyatt room-rates endpoint with:
+
+`rateFilter=standard`
+
+## Capture Method
+
+Responses were captured from the browser developer tools Network tab using
+Fetch/XHR requests generated during Hyatt availability searches.
+
+Only JSON response bodies were saved. Request headers, cookies,
 authorization information, and browser session data were not included.
 
-### Sanitization
+## Sanitization
 
-The fixture was checked for common sensitive fields including cookies,
+Both fixtures were checked for common sensitive fields including cookies,
 authorization headers, tokens, session identifiers, API keys, passwords,
 email addresses, and user/account identifiers.
 
-The sanitized fixture remains valid JSON.
+Both fixtures were validated as valid JSON.
