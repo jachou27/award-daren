@@ -1,0 +1,577 @@
+{
+    "roomRates": {
+        "VW04": {
+            "lowestCashRate": 294,
+            "lowestCashRatePlanCode": "MYHI",
+            "lowestPublicRate": 318,
+            "lowestPublicRatePlanCode": "RACK",
+            "lowestQualifiedRate": null,
+            "lowestQualifiedRatePlanCode": null,
+            "lowestPointValue": 20000,
+            "lowestPointRatePlanCode": "LPRM",
+            "lowestAvgPointValue": 20000,
+            "lowestAvgPointRatePlanCode": "LPRM",
+            "lowestPointCashRate": {
+                "rate": 159,
+                "points": 10000,
+                "ratePlanCode": "LPPC5R"
+            },
+            "lowestCashPointRate": null,
+            "rate": null,
+            "rateAfterTax": null,
+            "rateIncludingFeesBeforeTaxes": null,
+            "totalBeforeTax": null,
+            "totalAfterTax": null,
+            "points": null,
+            "avgPoints": null,
+            "totalPoints": null,
+            "currencyCode": "USD",
+            "stexPointAvailable": false,
+            "roomTypeCode": "VW04",
+            "roomCategory": "STANDARD",
+            "roomQuantity": 5,
+            "roomFlags": null,
+            "roomType": {
+                "code": "VW04",
+                "title": "1 King Bed, Waikiki City View",
+                "description": "Immerse yourself in the excitement of the city center with views of the Ko\u2018olau Mountain range in this king bedroom with 400 square feet to spread out in. Relax by day or night on your private lanai (balcony), perfect for watching people pass by on their way to surf or shop.",
+                "accessible": false,
+                "type": "Rooms",
+                "group": "ROOMS",
+                "subgroup": "ONE_BED",
+                "numberOfBeds": 1,
+                "bedTypes": [
+                    "KING"
+                ],
+                "additionalBeds": [],
+                "minSize": 410,
+                "maxSize": 465,
+                "style": "VIEW_CITY",
+                "features": {
+                    "VIEW_CITY": "Waikiki City View",
+                    "AREA_BALCONY": "Private Balcony"
+                },
+                "thumbnail": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/08/08/1328/HNLRW-P290-Waikiki-View-King-Tri.jpg/HNLRW-P290-Waikiki-View-King-Tri.16x9.jpg",
+                "virtualtour": [],
+                "video": [],
+                "media": [
+                    {
+                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/08/08/1328/HNLRW-P290-Waikiki-View-King-Tri.jpg/HNLRW-P290-Waikiki-View-King-Tri.16x9.jpg",
+                        "name": "Hyatt Regency Waikiki Beach Resort and Spa Waikiki View King Tri",
+                        "description": null,
+                        "thumbnail": null
+                    },
+                    {
+                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/08/30/0923/Hyatt-Regency-Waikiki-Beach-Resort-and-Spa-P525-Waikiki-View.jpg/Hyatt-Regency-Waikiki-Beach-Resort-and-Spa-P525-Waikiki-View.16x9.jpg",
+                        "name": "Hyatt Regency Waikiki Beach Resort and Spa Waikiki View",
+                        "description": null,
+                        "thumbnail": null
+                    },
+                    {
+                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2014/09/21/1507/HNLRW-P280-Bath.jpg/HNLRW-P280-Bath.16x9.jpg",
+                        "name": "Hyatt Regency Waikiki Beach Resort and Spa Bath",
+                        "description": null,
+                        "thumbnail": null
+                    }
+                ]
+            },
+            "ratePlans": [
+                {
+                    "id": "LPRM",
+                    "name": "Standard Room Free Night",
+                    "ratePlanType": "STANDARD",
+                    "guaranteeType": "STANDARD",
+                    "ratePlanCategory": "POINTS",
+                    "mealPlan": null,
+                    "rateFlags": [
+                        "CORE_RATE",
+                        "CONFIDENTIAL"
+                    ],
+                    "roomRateFlags": null,
+                    "groupCode": "54749",
+                    "isTranslated": true,
+                    "offerCode": null,
+                    "ratePlanDescription": null,
+                    "paymentDescription": "Credit Card Guarantee Required",
+                    "penaltyDescription": "11:59pm Hotel Time 3 Days Before Arrival Or Pay 1 Night Fee/Credit Card Required",
+                    "penaltyCode": "72H",
+                    "cancelPenaltyCode": "3DC",
+                    "unionPayRestricted": false,
+                    "availableDigitalPayments": [],
+                    "wohEligible": true,
+                    "wohEligibilityCode": "TO",
+                    "clubAvailable": true,
+                    "stexCashAvailable": false,
+                    "suiteUpgradeRatePlan": false,
+                    "rate": null,
+                    "rateAfterTax": null,
+                    "rateIncludingFeesBeforeTaxes": null,
+                    "totalBeforeTax": null,
+                    "totalAfterTax": null,
+                    "points": 20000,
+                    "avgPoints": 20000,
+                    "totalPoints": 40000,
+                    "currencyCode": null,
+                    "rates": null,
+                    "taxes": null
+                },
+                {
+                    "id": "LPPC5R",
+                    "name": "Points + Cash",
+                    "ratePlanType": "STANDARD",
+                    "guaranteeType": "STANDARD",
+                    "ratePlanCategory": "POINTS_CASH",
+                    "mealPlan": null,
+                    "rateFlags": [
+                        "CORE_RATE"
+                    ],
+                    "roomRateFlags": null,
+                    "groupCode": "51440",
+                    "isTranslated": true,
+                    "offerCode": null,
+                    "ratePlanDescription": "WORLD OF HYATT POINTS PLUS CASH AWARD - Standard guarantee/cancel policy applies.",
+                    "paymentDescription": "Credit Card Guarantee Required",
+                    "penaltyDescription": "11:59pm Hotel Time 3 Days Before Arrival Or Pay 1 Night Fee/Credit Card Required",
+                    "penaltyCode": "72H",
+                    "cancelPenaltyCode": "3DC",
+                    "unionPayRestricted": false,
+                    "availableDigitalPayments": [],
+                    "wohEligible": true,
+                    "wohEligibilityCode": "PT",
+                    "clubAvailable": true,
+                    "stexCashAvailable": false,
+                    "suiteUpgradeRatePlan": false,
+                    "rate": 159,
+                    "rateAfterTax": 254.04,
+                    "rateIncludingFeesBeforeTaxes": 214,
+                    "totalBeforeTax": 318,
+                    "totalAfterTax": 508.08,
+                    "points": 10000,
+                    "avgPoints": 10000,
+                    "totalPoints": 20000,
+                    "currencyCode": "USD",
+                    "rates": null,
+                    "taxes": [
+                        {
+                            "taxCode": "SA",
+                            "taxDescription": "SALES TAX",
+                            "taxAmount": 14.98,
+                            "taxPercentage": 4.71
+                        },
+                        {
+                            "taxCode": "MI",
+                            "taxDescription": "LODGING TAX",
+                            "taxAmount": 34.98,
+                            "taxPercentage": 11
+                        },
+                        {
+                            "taxCode": "MI",
+                            "taxDescription": "COUNTY TRANSIENT",
+                            "taxAmount": 9.54,
+                            "taxPercentage": 3
+                        },
+                        {
+                            "taxCode": "RF",
+                            "taxDescription": "RESORT FEES",
+                            "taxAmount": 110,
+                            "taxPercentage": null
+                        },
+                        {
+                            "taxCode": "PR",
+                            "taxDescription": "RESORT FEE TAX",
+                            "taxAmount": 20.58,
+                            "taxPercentage": null
+                        }
+                    ]
+                }
+            ]
+        },
+        "VW4Q": {
+            "lowestCashRate": 294,
+            "lowestCashRatePlanCode": "MYHI",
+            "lowestPublicRate": 318,
+            "lowestPublicRatePlanCode": "RACK",
+            "lowestQualifiedRate": null,
+            "lowestQualifiedRatePlanCode": null,
+            "lowestPointValue": 20000,
+            "lowestPointRatePlanCode": "LPRM",
+            "lowestAvgPointValue": 20000,
+            "lowestAvgPointRatePlanCode": "LPRM",
+            "lowestPointCashRate": {
+                "rate": 159,
+                "points": 10000,
+                "ratePlanCode": "LPPC5R"
+            },
+            "lowestCashPointRate": null,
+            "rate": null,
+            "rateAfterTax": null,
+            "rateIncludingFeesBeforeTaxes": null,
+            "totalBeforeTax": null,
+            "totalAfterTax": null,
+            "points": null,
+            "avgPoints": null,
+            "totalPoints": null,
+            "currencyCode": "USD",
+            "stexPointAvailable": false,
+            "roomTypeCode": "VW4Q",
+            "roomCategory": "STANDARD",
+            "roomQuantity": 34,
+            "roomFlags": null,
+            "roomType": {
+                "code": "VW4Q",
+                "title": "2 Queen Beds, Waikiki City View",
+                "description": "Immerse yourself in the excitement of the city center with views of the Ko\u2019olau Mountain range in this room with two queen beds and 400 square feet to spread out in. Relax by day or night on your private lanai (balcony), perfect for watching people pass by on their way to surf or shop.",
+                "accessible": false,
+                "type": "Rooms",
+                "group": "ROOMS",
+                "subgroup": "TWO_BEDS",
+                "numberOfBeds": 2,
+                "bedTypes": [
+                    "QUEEN",
+                    "QUEEN"
+                ],
+                "additionalBeds": [],
+                "minSize": 410,
+                "maxSize": 465,
+                "style": "VIEW_CITY",
+                "features": {
+                    "VIEW_CITY": "Waikiki City View",
+                    "AREA_BALCONY": "Private Balcony"
+                },
+                "thumbnail": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2014/09/21/1507/HNLRW-P291-Waikiki-View-St-Double.jpg/HNLRW-P291-Waikiki-View-St-Double.16x9.jpg",
+                "virtualtour": [],
+                "video": [],
+                "media": [
+                    {
+                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2014/09/21/1507/HNLRW-P291-Waikiki-View-St-Double.jpg/HNLRW-P291-Waikiki-View-St-Double.16x9.jpg",
+                        "name": "Hyatt Regency Waikiki Beach Resort and Spa Waikiki View St Double",
+                        "description": null,
+                        "thumbnail": null
+                    },
+                    {
+                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/08/30/0923/Hyatt-Regency-Waikiki-Beach-Resort-and-Spa-P525-Waikiki-View.jpg/Hyatt-Regency-Waikiki-Beach-Resort-and-Spa-P525-Waikiki-View.16x9.jpg",
+                        "name": "Hyatt Regency Waikiki Beach Resort and Spa Waikiki View",
+                        "description": null,
+                        "thumbnail": null
+                    },
+                    {
+                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2014/09/21/1507/HNLRW-P280-Bath.jpg/HNLRW-P280-Bath.16x9.jpg",
+                        "name": "Hyatt Regency Waikiki Beach Resort and Spa Bath",
+                        "description": null,
+                        "thumbnail": null
+                    }
+                ]
+            },
+            "ratePlans": [
+                {
+                    "id": "LPRM",
+                    "name": "Standard Room Free Night",
+                    "ratePlanType": "STANDARD",
+                    "guaranteeType": "STANDARD",
+                    "ratePlanCategory": "POINTS",
+                    "mealPlan": null,
+                    "rateFlags": [
+                        "CORE_RATE",
+                        "CONFIDENTIAL"
+                    ],
+                    "roomRateFlags": null,
+                    "groupCode": "54749",
+                    "isTranslated": true,
+                    "offerCode": null,
+                    "ratePlanDescription": null,
+                    "paymentDescription": "Credit Card Guarantee Required",
+                    "penaltyDescription": "11:59pm Hotel Time 3 Days Before Arrival Or Pay 1 Night Fee/Credit Card Required",
+                    "penaltyCode": "72H",
+                    "cancelPenaltyCode": "3DC",
+                    "unionPayRestricted": false,
+                    "availableDigitalPayments": [],
+                    "wohEligible": true,
+                    "wohEligibilityCode": "TO",
+                    "clubAvailable": true,
+                    "stexCashAvailable": false,
+                    "suiteUpgradeRatePlan": false,
+                    "rate": null,
+                    "rateAfterTax": null,
+                    "rateIncludingFeesBeforeTaxes": null,
+                    "totalBeforeTax": null,
+                    "totalAfterTax": null,
+                    "points": 20000,
+                    "avgPoints": 20000,
+                    "totalPoints": 40000,
+                    "currencyCode": null,
+                    "rates": null,
+                    "taxes": null
+                },
+                {
+                    "id": "LPPC5R",
+                    "name": "Points + Cash",
+                    "ratePlanType": "STANDARD",
+                    "guaranteeType": "STANDARD",
+                    "ratePlanCategory": "POINTS_CASH",
+                    "mealPlan": null,
+                    "rateFlags": [
+                        "CORE_RATE"
+                    ],
+                    "roomRateFlags": null,
+                    "groupCode": "51440",
+                    "isTranslated": true,
+                    "offerCode": null,
+                    "ratePlanDescription": "WORLD OF HYATT POINTS PLUS CASH AWARD - Standard guarantee/cancel policy applies.",
+                    "paymentDescription": "Credit Card Guarantee Required",
+                    "penaltyDescription": "11:59pm Hotel Time 3 Days Before Arrival Or Pay 1 Night Fee/Credit Card Required",
+                    "penaltyCode": "72H",
+                    "cancelPenaltyCode": "3DC",
+                    "unionPayRestricted": false,
+                    "availableDigitalPayments": [],
+                    "wohEligible": true,
+                    "wohEligibilityCode": "PT",
+                    "clubAvailable": true,
+                    "stexCashAvailable": false,
+                    "suiteUpgradeRatePlan": false,
+                    "rate": 159,
+                    "rateAfterTax": 254.04,
+                    "rateIncludingFeesBeforeTaxes": 214,
+                    "totalBeforeTax": 318,
+                    "totalAfterTax": 508.08,
+                    "points": 10000,
+                    "avgPoints": 10000,
+                    "totalPoints": 20000,
+                    "currencyCode": "USD",
+                    "rates": null,
+                    "taxes": [
+                        {
+                            "taxCode": "SA",
+                            "taxDescription": "SALES TAX",
+                            "taxAmount": 14.98,
+                            "taxPercentage": 4.71
+                        },
+                        {
+                            "taxCode": "MI",
+                            "taxDescription": "LODGING TAX",
+                            "taxAmount": 34.98,
+                            "taxPercentage": 11
+                        },
+                        {
+                            "taxCode": "MI",
+                            "taxDescription": "COUNTY TRANSIENT",
+                            "taxAmount": 9.54,
+                            "taxPercentage": 3
+                        },
+                        {
+                            "taxCode": "RF",
+                            "taxDescription": "RESORT FEES",
+                            "taxAmount": 110,
+                            "taxPercentage": null
+                        },
+                        {
+                            "taxCode": "PR",
+                            "taxDescription": "RESORT FEE TAX",
+                            "taxAmount": 20.58,
+                            "taxPercentage": null
+                        }
+                    ]
+                }
+            ]
+        },
+        "ADQT": {
+            "lowestCashRate": 294,
+            "lowestCashRatePlanCode": "MYHI",
+            "lowestPublicRate": 318,
+            "lowestPublicRatePlanCode": "RACK",
+            "lowestQualifiedRate": null,
+            "lowestQualifiedRatePlanCode": null,
+            "lowestPointValue": 20000,
+            "lowestPointRatePlanCode": "LPRM",
+            "lowestAvgPointValue": 20000,
+            "lowestAvgPointRatePlanCode": "LPRM",
+            "lowestPointCashRate": {
+                "rate": 159,
+                "points": 10000,
+                "ratePlanCode": "LPPC5R"
+            },
+            "lowestCashPointRate": null,
+            "rate": null,
+            "rateAfterTax": null,
+            "rateIncludingFeesBeforeTaxes": null,
+            "totalBeforeTax": null,
+            "totalAfterTax": null,
+            "points": null,
+            "avgPoints": null,
+            "totalPoints": null,
+            "currencyCode": "USD",
+            "stexPointAvailable": false,
+            "roomTypeCode": "ADQT",
+            "roomCategory": "STANDARD",
+            "roomQuantity": 3,
+            "roomFlags": null,
+            "roomType": {
+                "code": "ADQT",
+                "title": "2 Queen Beds, Accessible Tub",
+                "description": "Relax in comfort with 400 square feet of space with two queen beds and an accessible tub. You'll also find other room and bath conveniences, including wide doors, grab bars and lower height settings for ease of use.",
+                "accessible": true,
+                "type": "Rooms",
+                "group": "ROOMS",
+                "subgroup": "TWO_BEDS",
+                "numberOfBeds": 2,
+                "bedTypes": [
+                    "QUEEN",
+                    "QUEEN"
+                ],
+                "additionalBeds": [],
+                "minSize": 465,
+                "maxSize": 500,
+                "style": "ACCESSIBLE",
+                "features": {
+                    "VIEW_CITY": "Waikiki City View",
+                    "AREA_BALCONY": "Private Balcony",
+                    "BATH_TUB": "Accessible Tub"
+                },
+                "thumbnail": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2015/11/19/1026/Hyatt-Regency-Waikiki-Beach-Resort-And-Spa-P404-ADA-Tub.jpg/Hyatt-Regency-Waikiki-Beach-Resort-And-Spa-P404-ADA-Tub.16x9.jpg",
+                "virtualtour": [],
+                "video": [],
+                "media": [
+                    {
+                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2015/11/19/1026/Hyatt-Regency-Waikiki-Beach-Resort-And-Spa-P404-ADA-Tub.jpg/Hyatt-Regency-Waikiki-Beach-Resort-And-Spa-P404-ADA-Tub.16x9.jpg",
+                        "name": "Hyatt Regency Waikiki Beach Resort and Spa ADA Tub",
+                        "description": null,
+                        "thumbnail": null
+                    },
+                    {
+                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2015/11/03/1516/Hyatt-Regency-Waikiki-Beach-Resort-And-Spa-P418-Double-Q-Rectangular-Waikiki-View.jpg/Hyatt-Regency-Waikiki-Beach-Resort-And-Spa-P418-Double-Q-Rectangular-Waikiki-View.16x9.jpg",
+                        "name": "Hyatt Regency Waikiki Beach Resort and Spa Double Q Rectangular Waikiki View",
+                        "description": null,
+                        "thumbnail": null
+                    },
+                    {
+                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/08/30/0923/Hyatt-Regency-Waikiki-Beach-Resort-and-Spa-P527-Waikiki-View.jpg/Hyatt-Regency-Waikiki-Beach-Resort-and-Spa-P527-Waikiki-View.16x9.jpg",
+                        "name": "Hyatt Regency Waikiki Beach Resort and Spa Waikiki View",
+                        "description": null,
+                        "thumbnail": null
+                    },
+                    {
+                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/08/30/0923/Hyatt-Regency-Waikiki-Beach-Resort-and-Spa-P525-Waikiki-View.jpg/Hyatt-Regency-Waikiki-Beach-Resort-and-Spa-P525-Waikiki-View.16x9.jpg",
+                        "name": "Hyatt Regency Waikiki Beach Resort and Spa Waikiki View",
+                        "description": null,
+                        "thumbnail": null
+                    },
+                    {
+                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/08/30/0923/Hyatt-Regency-Waikiki-Beach-Resort-and-Spa-P526-Waikiki-View-Balcony.jpg/Hyatt-Regency-Waikiki-Beach-Resort-and-Spa-P526-Waikiki-View-Balcony.16x9.jpg",
+                        "name": "Hyatt Regency Waikiki Beach Resort and Spa Waikiki View Balcony",
+                        "description": null,
+                        "thumbnail": null
+                    }
+                ]
+            },
+            "ratePlans": [
+                {
+                    "id": "LPRM",
+                    "name": "Standard Room Free Night",
+                    "ratePlanType": "STANDARD",
+                    "guaranteeType": "STANDARD",
+                    "ratePlanCategory": "POINTS",
+                    "mealPlan": null,
+                    "rateFlags": [
+                        "CORE_RATE",
+                        "CONFIDENTIAL"
+                    ],
+                    "roomRateFlags": null,
+                    "groupCode": "54749",
+                    "isTranslated": true,
+                    "offerCode": null,
+                    "ratePlanDescription": null,
+                    "paymentDescription": "Credit Card Guarantee Required",
+                    "penaltyDescription": "11:59pm Hotel Time 3 Days Before Arrival Or Pay 1 Night Fee/Credit Card Required",
+                    "penaltyCode": "72H",
+                    "cancelPenaltyCode": "3DC",
+                    "unionPayRestricted": false,
+                    "availableDigitalPayments": [],
+                    "wohEligible": true,
+                    "wohEligibilityCode": "TO",
+                    "clubAvailable": true,
+                    "stexCashAvailable": false,
+                    "suiteUpgradeRatePlan": false,
+                    "rate": null,
+                    "rateAfterTax": null,
+                    "rateIncludingFeesBeforeTaxes": null,
+                    "totalBeforeTax": null,
+                    "totalAfterTax": null,
+                    "points": 20000,
+                    "avgPoints": 20000,
+                    "totalPoints": 40000,
+                    "currencyCode": null,
+                    "rates": null,
+                    "taxes": null
+                },
+                {
+                    "id": "LPPC5R",
+                    "name": "Points + Cash",
+                    "ratePlanType": "STANDARD",
+                    "guaranteeType": "STANDARD",
+                    "ratePlanCategory": "POINTS_CASH",
+                    "mealPlan": null,
+                    "rateFlags": [
+                        "CORE_RATE"
+                    ],
+                    "roomRateFlags": null,
+                    "groupCode": "51440",
+                    "isTranslated": true,
+                    "offerCode": null,
+                    "ratePlanDescription": "WORLD OF HYATT POINTS PLUS CASH AWARD - Standard guarantee/cancel policy applies.",
+                    "paymentDescription": "Credit Card Guarantee Required",
+                    "penaltyDescription": "11:59pm Hotel Time 3 Days Before Arrival Or Pay 1 Night Fee/Credit Card Required",
+                    "penaltyCode": "72H",
+                    "cancelPenaltyCode": "3DC",
+                    "unionPayRestricted": false,
+                    "availableDigitalPayments": [],
+                    "wohEligible": true,
+                    "wohEligibilityCode": "PT",
+                    "clubAvailable": true,
+                    "stexCashAvailable": false,
+                    "suiteUpgradeRatePlan": false,
+                    "rate": 159,
+                    "rateAfterTax": 254.04,
+                    "rateIncludingFeesBeforeTaxes": 214,
+                    "totalBeforeTax": 318,
+                    "totalAfterTax": 508.08,
+                    "points": 10000,
+                    "avgPoints": 10000,
+                    "totalPoints": 20000,
+                    "currencyCode": "USD",
+                    "rates": null,
+                    "taxes": [
+                        {
+                            "taxCode": "SA",
+                            "taxDescription": "SALES TAX",
+                            "taxAmount": 14.98,
+                            "taxPercentage": 4.71
+                        },
+                        {
+                            "taxCode": "MI",
+                            "taxDescription": "LODGING TAX",
+                            "taxAmount": 34.98,
+                            "taxPercentage": 11
+                        },
+                        {
+                            "taxCode": "MI",
+                            "taxDescription": "COUNTY TRANSIENT",
+                            "taxAmount": 9.54,
+                            "taxPercentage": 3
+                        },
+                        {
+                            "taxCode": "RF",
+                            "taxDescription": "RESORT FEES",
+                            "taxAmount": 110,
+                            "taxPercentage": null
+                        },
+                        {
+                            "taxCode": "PR",
+                            "taxDescription": "RESORT FEE TAX",
+                            "taxAmount": 20.58,
+                            "taxPercentage": null
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
