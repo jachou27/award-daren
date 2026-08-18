@@ -1,9 +1,9 @@
 {
     "roomRates": {
         "VW04": {
-            "lowestCashRate": 294,
+            "lowestCashRate": 274,
             "lowestCashRatePlanCode": "MYHI",
-            "lowestPublicRate": 318,
+            "lowestPublicRate": 288,
             "lowestPublicRatePlanCode": "RACK",
             "lowestQualifiedRate": null,
             "lowestQualifiedRatePlanCode": null,
@@ -12,7 +12,7 @@
             "lowestAvgPointValue": 20000,
             "lowestAvgPointRatePlanCode": "LPRM",
             "lowestPointCashRate": {
-                "rate": 159,
+                "rate": 144,
                 "points": 10000,
                 "ratePlanCode": "LPPC5R"
             },
@@ -29,12 +29,12 @@
             "stexPointAvailable": false,
             "roomTypeCode": "VW04",
             "roomCategory": "STANDARD",
-            "roomQuantity": 5,
+            "roomQuantity": 14,
             "roomFlags": null,
             "roomType": {
                 "code": "VW04",
                 "title": "1 King Bed, Waikiki City View",
-                "description": "Immerse yourself in the excitement of the city center with views of the Ko\u2018olau Mountain range in this king bedroom with 400 square feet to spread out in. Relax by day or night on your private lanai (balcony), perfect for watching people pass by on their way to surf or shop.",
+                "description": "Immerse yourself in the excitement of the city center with views of the Ko‘olau Mountain range in this king bedroom with 400 square feet to spread out in. Relax by day or night on your private lanai (balcony), perfect for watching people pass by on their way to surf or shop.",
                 "accessible": false,
                 "type": "Rooms",
                 "group": "ROOMS",
@@ -110,7 +110,7 @@
                     "totalAfterTax": null,
                     "points": 20000,
                     "avgPoints": 20000,
-                    "totalPoints": 40000,
+                    "totalPoints": 20000,
                     "currencyCode": null,
                     "rates": null,
                     "taxes": null
@@ -141,45 +141,45 @@
                     "clubAvailable": true,
                     "stexCashAvailable": false,
                     "suiteUpgradeRatePlan": false,
-                    "rate": 159,
-                    "rateAfterTax": 254.04,
-                    "rateIncludingFeesBeforeTaxes": 214,
-                    "totalBeforeTax": 318,
-                    "totalAfterTax": 508.08,
+                    "rate": 144,
+                    "rateAfterTax": 236.24,
+                    "rateIncludingFeesBeforeTaxes": 199,
+                    "totalBeforeTax": 144,
+                    "totalAfterTax": 236.24,
                     "points": 10000,
                     "avgPoints": 10000,
-                    "totalPoints": 20000,
+                    "totalPoints": 10000,
                     "currencyCode": "USD",
                     "rates": null,
                     "taxes": [
                         {
                             "taxCode": "SA",
                             "taxDescription": "SALES TAX",
-                            "taxAmount": 14.98,
+                            "taxAmount": 6.79,
                             "taxPercentage": 4.71
                         },
                         {
                             "taxCode": "MI",
                             "taxDescription": "LODGING TAX",
-                            "taxAmount": 34.98,
+                            "taxAmount": 15.84,
                             "taxPercentage": 11
                         },
                         {
                             "taxCode": "MI",
                             "taxDescription": "COUNTY TRANSIENT",
-                            "taxAmount": 9.54,
+                            "taxAmount": 4.32,
                             "taxPercentage": 3
                         },
                         {
                             "taxCode": "RF",
                             "taxDescription": "RESORT FEES",
-                            "taxAmount": 110,
+                            "taxAmount": 55,
                             "taxPercentage": null
                         },
                         {
                             "taxCode": "PR",
                             "taxDescription": "RESORT FEE TAX",
-                            "taxAmount": 20.58,
+                            "taxAmount": 10.29,
                             "taxPercentage": null
                         }
                     ]
@@ -187,9 +187,9 @@
             ]
         },
         "VW4Q": {
-            "lowestCashRate": 294,
+            "lowestCashRate": 274,
             "lowestCashRatePlanCode": "MYHI",
-            "lowestPublicRate": 318,
+            "lowestPublicRate": 288,
             "lowestPublicRatePlanCode": "RACK",
             "lowestQualifiedRate": null,
             "lowestQualifiedRatePlanCode": null,
@@ -198,7 +198,7 @@
             "lowestAvgPointValue": 20000,
             "lowestAvgPointRatePlanCode": "LPRM",
             "lowestPointCashRate": {
-                "rate": 159,
+                "rate": 144,
                 "points": 10000,
                 "ratePlanCode": "LPPC5R"
             },
@@ -215,12 +215,12 @@
             "stexPointAvailable": false,
             "roomTypeCode": "VW4Q",
             "roomCategory": "STANDARD",
-            "roomQuantity": 34,
+            "roomQuantity": 80,
             "roomFlags": null,
             "roomType": {
                 "code": "VW4Q",
                 "title": "2 Queen Beds, Waikiki City View",
-                "description": "Immerse yourself in the excitement of the city center with views of the Ko\u2019olau Mountain range in this room with two queen beds and 400 square feet to spread out in. Relax by day or night on your private lanai (balcony), perfect for watching people pass by on their way to surf or shop.",
+                "description": "Immerse yourself in the excitement of the city center with views of the Ko’olau Mountain range in this room with two queen beds and 400 square feet to spread out in. Relax by day or night on your private lanai (balcony), perfect for watching people pass by on their way to surf or shop.",
                 "accessible": false,
                 "type": "Rooms",
                 "group": "ROOMS",
@@ -297,7 +297,7 @@
                     "totalAfterTax": null,
                     "points": 20000,
                     "avgPoints": 20000,
-                    "totalPoints": 40000,
+                    "totalPoints": 20000,
                     "currencyCode": null,
                     "rates": null,
                     "taxes": null
@@ -328,68 +328,68 @@
                     "clubAvailable": true,
                     "stexCashAvailable": false,
                     "suiteUpgradeRatePlan": false,
-                    "rate": 159,
-                    "rateAfterTax": 254.04,
-                    "rateIncludingFeesBeforeTaxes": 214,
-                    "totalBeforeTax": 318,
-                    "totalAfterTax": 508.08,
+                    "rate": 144,
+                    "rateAfterTax": 236.24,
+                    "rateIncludingFeesBeforeTaxes": 199,
+                    "totalBeforeTax": 144,
+                    "totalAfterTax": 236.24,
                     "points": 10000,
                     "avgPoints": 10000,
-                    "totalPoints": 20000,
+                    "totalPoints": 10000,
                     "currencyCode": "USD",
                     "rates": null,
                     "taxes": [
                         {
                             "taxCode": "SA",
                             "taxDescription": "SALES TAX",
-                            "taxAmount": 14.98,
+                            "taxAmount": 6.79,
                             "taxPercentage": 4.71
                         },
                         {
                             "taxCode": "MI",
                             "taxDescription": "LODGING TAX",
-                            "taxAmount": 34.98,
+                            "taxAmount": 15.84,
                             "taxPercentage": 11
                         },
                         {
                             "taxCode": "MI",
                             "taxDescription": "COUNTY TRANSIENT",
-                            "taxAmount": 9.54,
+                            "taxAmount": 4.32,
                             "taxPercentage": 3
                         },
                         {
                             "taxCode": "RF",
                             "taxDescription": "RESORT FEES",
-                            "taxAmount": 110,
+                            "taxAmount": 55,
                             "taxPercentage": null
                         },
                         {
                             "taxCode": "PR",
                             "taxDescription": "RESORT FEE TAX",
-                            "taxAmount": 20.58,
+                            "taxAmount": 10.29,
                             "taxPercentage": null
                         }
                     ]
                 }
             ]
         },
-        "ADQT": {
-            "lowestCashRate": 294,
+        "ST02": {
+            "lowestCashRate": 458,
             "lowestCashRatePlanCode": "MYHI",
-            "lowestPublicRate": 318,
+            "lowestPublicRate": 482,
             "lowestPublicRatePlanCode": "RACK",
             "lowestQualifiedRate": null,
             "lowestQualifiedRatePlanCode": null,
             "lowestPointValue": 20000,
-            "lowestPointRatePlanCode": "LPRM",
+            "lowestPointRatePlanCode": "STEXLP",
             "lowestAvgPointValue": 20000,
-            "lowestAvgPointRatePlanCode": "LPRM",
-            "lowestPointCashRate": {
-                "rate": 159,
-                "points": 10000,
-                "ratePlanCode": "LPPC5R"
+            "lowestAvgPointRatePlanCode": "STEXLP",
+            "lowestPointCashRate": null,
+            "lowestCashPointRate": {
+                "rate": 339,
+                "points": 6000,
+                "ratePlanCode": "LPSU"
             },
-            "lowestCashPointRate": null,
             "rate": null,
             "rateAfterTax": null,
             "rateIncludingFeesBeforeTaxes": null,
@@ -399,64 +399,51 @@
             "avgPoints": null,
             "totalPoints": null,
             "currencyCode": "USD",
-            "stexPointAvailable": false,
-            "roomTypeCode": "ADQT",
-            "roomCategory": "STANDARD",
-            "roomQuantity": 3,
+            "stexPointAvailable": true,
+            "roomTypeCode": "ST02",
+            "roomCategory": "PREMIUM",
+            "roomQuantity": 1,
             "roomFlags": null,
             "roomType": {
-                "code": "ADQT",
-                "title": "2 Queen Beds, Accessible Tub",
-                "description": "Relax in comfort with 400 square feet of space with two queen beds and an accessible tub. You'll also find other room and bath conveniences, including wide doors, grab bars and lower height settings for ease of use.",
-                "accessible": true,
-                "type": "Rooms",
-                "group": "ROOMS",
-                "subgroup": "TWO_BEDS",
-                "numberOfBeds": 2,
-                "bedTypes": [
-                    "QUEEN",
-                    "QUEEN"
-                ],
+                "code": "ST02",
+                "title": "One Bedroom Waikiki View Suite",
+                "description": "Surround yourself in views of the mountains and Waikiki’s city lights from the two private lanais of this 966-square-foot suite, located in the Ewa Tower. Inside, you’ll find a separate bedroom with one king bed, an elegant living area with a queen sleeper sofa and two full bathrooms with premium Na Ho’ola Spa bath products. This is a standard suite. See World of Hyatt program terms for upgrade eligibility.",
+                "accessible": false,
+                "type": "Suites",
+                "group": null,
+                "subgroup": null,
+                "numberOfBeds": null,
+                "bedTypes": [],
                 "additionalBeds": [],
-                "minSize": 465,
-                "maxSize": 500,
-                "style": "ACCESSIBLE",
-                "features": {
-                    "VIEW_CITY": "Waikiki City View",
-                    "AREA_BALCONY": "Private Balcony",
-                    "BATH_TUB": "Accessible Tub"
-                },
-                "thumbnail": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2015/11/19/1026/Hyatt-Regency-Waikiki-Beach-Resort-And-Spa-P404-ADA-Tub.jpg/Hyatt-Regency-Waikiki-Beach-Resort-And-Spa-P404-ADA-Tub.16x9.jpg",
+                "minSize": null,
+                "maxSize": null,
+                "style": null,
+                "features": {},
+                "thumbnail": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2024/12/20/1459/HNLRW-P0725-One-Bedroom-Waikiki-View-Suite-Living-Area.jpg/HNLRW-P0725-One-Bedroom-Waikiki-View-Suite-Living-Area.16x9.jpg",
                 "virtualtour": [],
                 "video": [],
                 "media": [
                     {
-                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2015/11/19/1026/Hyatt-Regency-Waikiki-Beach-Resort-And-Spa-P404-ADA-Tub.jpg/Hyatt-Regency-Waikiki-Beach-Resort-And-Spa-P404-ADA-Tub.16x9.jpg",
-                        "name": "Hyatt Regency Waikiki Beach Resort and Spa ADA Tub",
+                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2024/12/20/1459/HNLRW-P0725-One-Bedroom-Waikiki-View-Suite-Living-Area.jpg/HNLRW-P0725-One-Bedroom-Waikiki-View-Suite-Living-Area.16x9.jpg",
+                        "name": "Hyatt Regency Waikiki Beach Resort and Spa One Bedroom Waikiki View Suite Living Area",
                         "description": null,
                         "thumbnail": null
                     },
                     {
-                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2015/11/03/1516/Hyatt-Regency-Waikiki-Beach-Resort-And-Spa-P418-Double-Q-Rectangular-Waikiki-View.jpg/Hyatt-Regency-Waikiki-Beach-Resort-And-Spa-P418-Double-Q-Rectangular-Waikiki-View.16x9.jpg",
-                        "name": "Hyatt Regency Waikiki Beach Resort and Spa Double Q Rectangular Waikiki View",
+                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2024/12/20/1459/HNLRW-P0726-One-Bedroom-Waikiki-View-Suite-Bedroom.jpg/HNLRW-P0726-One-Bedroom-Waikiki-View-Suite-Bedroom.16x9.jpg",
+                        "name": "Hyatt Regency Waikiki Beach Resort and Spa One Bedroom Waikiki View Suite Bedroom",
                         "description": null,
                         "thumbnail": null
                     },
                     {
-                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/08/30/0923/Hyatt-Regency-Waikiki-Beach-Resort-and-Spa-P527-Waikiki-View.jpg/Hyatt-Regency-Waikiki-Beach-Resort-and-Spa-P527-Waikiki-View.16x9.jpg",
-                        "name": "Hyatt Regency Waikiki Beach Resort and Spa Waikiki View",
+                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2014/09/21/1507/HNLRW-P280-Bath.jpg/HNLRW-P280-Bath.16x9.jpg",
+                        "name": "Hyatt Regency Waikiki Beach Resort and Spa Bath",
                         "description": null,
                         "thumbnail": null
                     },
                     {
-                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/08/30/0923/Hyatt-Regency-Waikiki-Beach-Resort-and-Spa-P525-Waikiki-View.jpg/Hyatt-Regency-Waikiki-Beach-Resort-and-Spa-P525-Waikiki-View.16x9.jpg",
-                        "name": "Hyatt Regency Waikiki Beach Resort and Spa Waikiki View",
-                        "description": null,
-                        "thumbnail": null
-                    },
-                    {
-                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/08/30/0923/Hyatt-Regency-Waikiki-Beach-Resort-and-Spa-P526-Waikiki-View-Balcony.jpg/Hyatt-Regency-Waikiki-Beach-Resort-and-Spa-P526-Waikiki-View-Balcony.16x9.jpg",
-                        "name": "Hyatt Regency Waikiki Beach Resort and Spa Waikiki View Balcony",
+                        "url": "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2024/12/11/1858/HNLRW-P0724-One-Bedroom-Waikiki-View-Suite-View.jpg/HNLRW-P0724-One-Bedroom-Waikiki-View-Suite-View.16x9.jpg",
+                        "name": "Hyatt Regency Waikiki Beach Resort and Spa One Bedroom Waikiki View Suite View",
                         "description": null,
                         "thumbnail": null
                     }
@@ -464,14 +451,14 @@
             },
             "ratePlans": [
                 {
-                    "id": "LPRM",
-                    "name": "Standard Room Free Night",
+                    "id": "STEXLP",
+                    "name": "Point Award + Suite Upgrade",
                     "ratePlanType": "STANDARD",
                     "guaranteeType": "STANDARD",
                     "ratePlanCategory": "POINTS",
                     "mealPlan": null,
                     "rateFlags": [
-                        "CORE_RATE",
+                        "SUITE_UPGRADE",
                         "CONFIDENTIAL"
                     ],
                     "roomRateFlags": null,
@@ -488,8 +475,8 @@
                     "wohEligible": true,
                     "wohEligibilityCode": "TO",
                     "clubAvailable": true,
-                    "stexCashAvailable": false,
-                    "suiteUpgradeRatePlan": false,
+                    "stexCashAvailable": true,
+                    "suiteUpgradeRatePlan": true,
                     "rate": null,
                     "rateAfterTax": null,
                     "rateIncludingFeesBeforeTaxes": null,
@@ -497,26 +484,24 @@
                     "totalAfterTax": null,
                     "points": 20000,
                     "avgPoints": 20000,
-                    "totalPoints": 40000,
+                    "totalPoints": 20000,
                     "currencyCode": null,
                     "rates": null,
                     "taxes": null
                 },
                 {
-                    "id": "LPPC5R",
-                    "name": "Points + Cash",
+                    "id": "LPSU",
+                    "name": "Lp Suite Pts Upgr",
                     "ratePlanType": "STANDARD",
                     "guaranteeType": "STANDARD",
-                    "ratePlanCategory": "POINTS_CASH",
+                    "ratePlanCategory": "CASH_POINTS",
                     "mealPlan": null,
-                    "rateFlags": [
-                        "CORE_RATE"
-                    ],
+                    "rateFlags": [],
                     "roomRateFlags": null,
                     "groupCode": "51440",
                     "isTranslated": true,
                     "offerCode": null,
-                    "ratePlanDescription": "WORLD OF HYATT POINTS PLUS CASH AWARD - Standard guarantee/cancel policy applies.",
+                    "ratePlanDescription": "WORLD OF HYATT SUITE POINT UPGRADE - Valid on 1-Bedroom Suite only. - Standard guarantee/cxl policy",
                     "paymentDescription": "Credit Card Guarantee Required",
                     "penaltyDescription": "11:59pm Hotel Time 3 Days Before Arrival Or Pay 1 Night Fee/Credit Card Required",
                     "penaltyCode": "72H",
@@ -526,47 +511,47 @@
                     "wohEligible": true,
                     "wohEligibilityCode": "PT",
                     "clubAvailable": true,
-                    "stexCashAvailable": false,
+                    "stexCashAvailable": true,
                     "suiteUpgradeRatePlan": false,
-                    "rate": 159,
-                    "rateAfterTax": 254.04,
-                    "rateIncludingFeesBeforeTaxes": 214,
-                    "totalBeforeTax": 318,
-                    "totalAfterTax": 508.08,
-                    "points": 10000,
-                    "avgPoints": 10000,
-                    "totalPoints": 20000,
+                    "rate": 339,
+                    "rateAfterTax": 467.72,
+                    "rateIncludingFeesBeforeTaxes": 394,
+                    "totalBeforeTax": 339,
+                    "totalAfterTax": 467.72,
+                    "points": 6000,
+                    "avgPoints": 6000,
+                    "totalPoints": 6000,
                     "currencyCode": "USD",
                     "rates": null,
                     "taxes": [
                         {
                             "taxCode": "SA",
                             "taxDescription": "SALES TAX",
-                            "taxAmount": 14.98,
+                            "taxAmount": 15.97,
                             "taxPercentage": 4.71
                         },
                         {
                             "taxCode": "MI",
                             "taxDescription": "LODGING TAX",
-                            "taxAmount": 34.98,
+                            "taxAmount": 37.29,
                             "taxPercentage": 11
                         },
                         {
                             "taxCode": "MI",
                             "taxDescription": "COUNTY TRANSIENT",
-                            "taxAmount": 9.54,
+                            "taxAmount": 10.17,
                             "taxPercentage": 3
                         },
                         {
                             "taxCode": "RF",
                             "taxDescription": "RESORT FEES",
-                            "taxAmount": 110,
+                            "taxAmount": 55,
                             "taxPercentage": null
                         },
                         {
                             "taxCode": "PR",
                             "taxDescription": "RESORT FEE TAX",
-                            "taxAmount": 20.58,
+                            "taxAmount": 10.29,
                             "taxPercentage": null
                         }
                     ]
