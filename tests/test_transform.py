@@ -1,5 +1,6 @@
 from ingestion.transform import transform_hotel, transform_room_types, transform_availability
 from decimal import Decimal
+import pytest
 
 def test_transform_hotel():
     hotel_data ={
@@ -16,6 +17,35 @@ def test_transform_hotel():
 
     assert result["hotel_id"] == "HNLRW"
     assert result["category"] == 5
+
+    hotel_data_minimal ={
+        "hotel_id": "HNLRW",
+        "name": "Hyatt Regency Waikiki Beach Resort and Spa",
+        "brand": "Hyatt Regency",
+    }
+
+    result_minimal = transform_hotel(hotel_data_minimal)
+
+    assert result_minimal["category"] is None
+    assert result_minimal["address"] is None
+    assert result_minimal["city"] is None
+    assert result_minimal["country"] is None
+
+    hotel_data_missing_id ={
+        "name": "Hyatt Regency Waikiki Beach Resort and Spa",
+        "brand": "Hyatt Regency",
+    }
+
+    with pytest.raises(ValueError):
+        transform_hotel(hotel_data_missing_id)
+
+    hotel_data_missing_name = {
+        "hotel_id": "HNLRW",
+        "brand": "Hyatt Regency",        
+    }
+
+    with pytest.raises(ValueError):
+        transform_hotel(hotel_data_missing_name)    
 
 def test_transform_room_types():
     award_data ={
@@ -34,6 +64,60 @@ def test_transform_room_types():
     assert len(result) == 1
     assert result[0]["source_room_type_id"] == "VW04"
     assert result[0]["name"] == "1 King Bed, Waikiki City View"
+
+    with pytest.raises(ValueError):
+        transform_room_types(award_data, "")
+
+    award_data_missing_code = {
+        "roomRates": {
+            "VW04": {
+                "roomType": {
+                    "title": "1 King Bed, Waikiki City View"
+                }
+            }
+        }
+    }
+
+    with pytest.raises(ValueError):
+        transform_room_types(award_data_missing_code, "HNLRW")
+
+    award_data_missing_room_type = {
+        "roomRates": {
+            "VW04": {
+                "roomTypeCode": "VW04"
+            }
+        }
+    }
+
+    with pytest.raises(ValueError):
+        transform_room_types(award_data_missing_room_type, "HNLRW")
+
+    award_data_missing_title = {
+        "roomRates": {
+            "VW04": {
+                "roomTypeCode": "VW04",
+                "roomType": {}
+            }
+        }
+    }
+
+    with pytest.raises(ValueError):
+        transform_room_types(award_data_missing_title, "HNLRW")
+
+    award_data_no_category = {
+        "roomRates": {
+            "VW04": {
+                "roomTypeCode": "VW04",
+                "roomType": {
+                    "title": "1 King Bed, Waikiki City View"
+                }
+            }
+        }
+    }
+
+    result_no_category = transform_room_types(award_data_no_category, "HNLRW")
+
+    assert result_no_category[0]["award_type"] is None
 
 def test_transform_availability():
     award_data = {
@@ -69,3 +153,101 @@ def test_transform_availability():
     assert result[0]["award_available"] is True
     assert result[0]["points_price"] == 20000
     assert result[0]["cash_price"]== Decimal("390.56")
+
+    with pytest.raises(ValueError):
+        transform_availability(award_data, cash_data, "")
+
+    award_data_missing_room_code = {
+        "roomRates": {
+            "VW04": {
+                "ratePlans": [
+                    {
+                        "ratePlanCategory": "POINTS",
+                        "points": 20000
+                    }
+                ]
+            }
+        }
+    }
+
+    with pytest.raises(ValueError):
+        transform_availability(
+            award_data_missing_room_code,
+            cash_data,
+            "2026-09-22"
+        )        
+
+    award_data_missing_rate_plans = {
+        "roomRates": {
+            "VW04": {
+                "roomTypeCode": "VW04"
+            }
+        }
+    }
+
+    with pytest.raises(ValueError):
+        transform_availability(
+            award_data_missing_rate_plans,
+            cash_data,
+            "2026-09-22"
+        )
+
+    award_data_missing_points = {
+        "roomRates": {
+            "VW04": {
+                "roomTypeCode": "VW04",
+                "ratePlans": [
+                    {
+                        "ratePlanCategory": "POINTS"
+                    }
+                ]
+            }
+        }
+    }
+
+    with pytest.raises(ValueError):
+        transform_availability(
+            award_data_missing_points,
+            cash_data,
+            "2026-09-22"
+        )
+
+    cash_data_missing_price = {
+        "roomRates": {
+            "VW04": {
+                "ratePlans": [
+                    {
+                        "id": "MYHI",
+                        "currencyCode": "USD"
+                    }
+                ]
+            }
+        }
+    }
+
+    with pytest.raises(ValueError):
+        transform_availability(
+            award_data,
+            cash_data_missing_price,
+            "2026-09-22"
+        )
+
+    cash_data_missing_currency = {
+        "roomRates": {
+            "VW04": {
+                "ratePlans": [
+                    {
+                        "id": "MYHI",
+                        "totalAfterTax": 390.56
+                    }
+                ]
+            }
+        }
+    }
+
+    with pytest.raises(ValueError):
+        transform_availability(
+            award_data,
+            cash_data_missing_currency,
+            "2026-09-22"
+        )    
