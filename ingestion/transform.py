@@ -1,15 +1,5 @@
-import json
 from datetime import date, datetime, timezone
 from decimal import Decimal
-
-with open("tests/fixtures/hyatt_award_availability_sample.json") as file:
-    award_data = json.load(file)
-
-with open("tests/fixtures/hyatt_cash_availability_sample.json") as file:
-    cash_data = json.load(file)
-
-with open("tests/fixtures/hyatt_hotel_sample.json") as file:
-    hotel_data = json.load(file)
 
 def validate_required_fields(data, required_fields, record_name):
     for field in required_fields:
@@ -103,3 +93,15 @@ def transform_hotel(hotel_data):
 
 #print(transform_hotel(hotel_data))
 
+def transform_hyatt_data(award_data, cash_data, hotel_data, stay_date):
+    hotel = transform_hotel(hotel_data)
+    room_types = transform_room_types(award_data, hotel["hotel_id"])
+    availability = transform_availability(award_data, cash_data, stay_date)
+
+    transformed_data = {
+        "hotel": hotel,
+        "room_types": room_types,
+        "availability": availability
+    }
+
+    return transformed_data
