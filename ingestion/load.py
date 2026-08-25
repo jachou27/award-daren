@@ -1,4 +1,9 @@
-def load(connection, transformed_data, pipeline_run_id):
+def load(cursor, transformed_data, pipeline_run_id) -> dict:
+    """
+    Load transformed hotel, room type, and
+    availability records and return record counts.
+    """
+
     hotel = transformed_data["hotel"]
     room_types = transformed_data["room_types"]
     availability_records = transformed_data["availability"]
@@ -8,25 +13,18 @@ def load(connection, transformed_data, pipeline_run_id):
     availability_count = 0
     room_type_mapping = {}
 
-    try:
-        with connection.cursor() as cursor:
-            load_hotel(cursor, hotel)
-            hotel_count += 1
+    load_hotel(cursor, hotel)
+    hotel_count += 1
 
-            for room_type in room_types:
-                source_room_type_id = room_type["source_room_type_id"]
-                room_type_id = load_room_type(cursor, room_type)
-                room_type_mapping[source_room_type_id] = room_type_id
-                room_type_count += 1
+    for room_type in room_types:
+        source_room_type_id = room_type["source_room_type_id"]
+        room_type_id = load_room_type(cursor, room_type)
+        room_type_mapping[source_room_type_id] = room_type_id
+        room_type_count += 1
 
-            for availability in availability_records:
-                load_availability(cursor, availability, room_type_mapping, pipeline_run_id)
-                availability_count += 1
-
-        connection.commit()
-    except Exception:
-        connection.rollback()
-        raise 
+    for availability in availability_records:
+        load_availability(cursor, availability, room_type_mapping, pipeline_run_id)
+        availability_count += 1
 
     counts = {
         "hotels": hotel_count,
