@@ -28,7 +28,7 @@ with connection.cursor() as cursor:
         complete_pipeline_run(cursor, pipeline_run_id, records_extracted, records_loaded)
         connection.commit()
     except Exception:
-        error_message = "Hyatt pipeline failed during load"
+        error_message = "Hyatt pipeline failed"
         connection.rollback()
         fail_pipeline_run(cursor, pipeline_run_id, error_message)
         connection.commit()
