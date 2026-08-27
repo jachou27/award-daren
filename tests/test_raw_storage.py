@@ -22,12 +22,14 @@ def test_save_raw_response(tmp_path, monkeypatch):
     saved_path = raw_storage.save_raw_response(
         payload=payload,
         hotel_id="HNLRW",
+        source_type="award",
+        pipeline_run_id=1,
     )
 
     assert isinstance(saved_path, Path)
     assert saved_path.exists()
     assert saved_path.parent == raw_dir
-    assert saved_path.name.startswith("hyatt_HNLRW_")
+    assert saved_path.name.startswith("hyatt_HNLRW_award_run1_")
     assert saved_path.suffix == ".json"
 
     with saved_path.open("r", encoding="utf-8") as file:
@@ -58,10 +60,14 @@ def test_save_raw_response_does_not_overwrite(tmp_path, monkeypatch):
         raw_storage.save_raw_response(
             payload=payload,
             hotel_id="HNLRW",
+            source_type="award",
+            pipeline_run_id=1,
         )
 
         with pytest.raises(FileExistsError):
             raw_storage.save_raw_response(
                 payload=payload,
                 hotel_id="HNLRW",
+                source_type="award",
+                pipeline_run_id=1,
             )
