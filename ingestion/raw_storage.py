@@ -9,6 +9,8 @@ RAW_DATA_DIR = Path("data/raw")
 def save_raw_response(
     payload: dict,
     hotel_id: str,
+    source_type: str,
+    pipeline_run_id: int
 ) -> Path:
     """Save a raw source response and return its file path."""
 
@@ -16,7 +18,7 @@ def save_raw_response(
 
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
 
-    filename = f"hyatt_{hotel_id}_{timestamp}.json"
+    filename = f"hyatt_{hotel_id}_{source_type}_run{pipeline_run_id}_{timestamp}.json"
     file_path = RAW_DATA_DIR / filename
 
     with file_path.open("x", encoding="utf-8") as file:
