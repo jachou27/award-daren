@@ -4,13 +4,13 @@
 
 Award Daren is an end-to-end data engineering project that builds a historical dataset of hotel award availability and pricing.
 
-Version 1 focuses on Hyatt and uses Python, PostgreSQL, SQL, and Docker to build the ingestion, transformation, storage, and analytics pipeline that will eventually power hotel award search, historical analysis, and AI-assisted travel planning.
+Version 1 focuses on Hyatt and uses Python, PostgreSQL, SQL, Docker, and automated testing to build a modular ingestion, transformation, storage, and analytics pipeline that can eventually power hotel award search, historical analysis, and AI-assisted travel planning.
 
 ---
 
 ## Project Goals
 
-Award availability is often difficult to search, compare, and analyze over time.
+Hotel award availability is often difficult to search, compare, and analyze over time.
 
 Award Daren aims to build a structured data platform that can:
 
@@ -19,6 +19,7 @@ Award Daren aims to build a structured data platform that can:
 * Transform source responses into a consistent data model
 * Store historical availability observations
 * Compare points and cash pricing
+* Track individual pipeline executions
 * Analyze award availability trends
 * Power future search and AI-assisted travel planning experiences
 
@@ -31,10 +32,13 @@ Award Daren aims to build a structured data platform that can:
 * Hyatt award availability ingestion
 * Raw JSON source data preservation
 * Source-to-database field mapping
-* Award availability transformation
+* Hyatt award and cash price transformation
 * PostgreSQL relational data model
 * Historical availability storage
 * Pipeline execution tracking
+* End-to-end local pipeline command
+* Automated pipeline testing
+* Sanitized fixture-based testing
 * SQL-based data validation and analytics
 
 ### Planned Product Features
@@ -56,6 +60,7 @@ Award Daren aims to build a structured data platform that can:
 * PostgreSQL
 * SQL
 * Docker
+* pytest
 * Git
 * GitHub
 
@@ -66,6 +71,8 @@ Award Daren aims to build a structured data platform that can:
 * FastAPI
 * React
 * Cloud data platform integration
+* CI/CD
+* Monitoring and observability tooling
 
 ---
 
@@ -74,22 +81,129 @@ Award Daren aims to build a structured data platform that can:
 The initial pipeline follows a standard ETL workflow:
 
 ```text
-Hyatt Availability Source
-          |
-          v
-   Raw JSON Response
-          |
-          v
-   Python Transformation
-          |
-          v
-      PostgreSQL
-          |
-          v
-    SQL Analytics
+Hyatt Source Data
+       |
+       v
+ Raw JSON Files
+       |
+       v
+Python Transformation
+       |
+       v
+ PostgreSQL Load
+       |
+       v
+Pipeline Run Tracking
+       |
+       v
+ SQL Validation
+       |
+       v
+Future Analytics Layer
 ```
 
-The pipeline is designed so that additional orchestration, transformation, and analytics tools can be introduced as the project grows.
+The current pipeline uses captured and sanitized Hyatt source responses so development and testing remain deterministic and do not depend on the live Hyatt website.
+
+The architecture is designed so that automated extraction, orchestration, analytics tooling, and cloud infrastructure can be introduced incrementally as the project grows.
+
+---
+
+## Pipeline Components
+
+The ingestion layer is separated into modular components.
+
+### Configuration
+
+`ingestion/config.py`
+
+Loads and validates required PostgreSQL environment variables.
+
+### Database Connection
+
+`ingestion/database.py`
+
+Provides reusable PostgreSQL database connectivity for pipeline modules.
+
+### Raw Storage
+
+`ingestion/raw_storage.py`
+
+Preserves source responses as raw JSON files before transformation.
+
+### Transformation
+
+`ingestion/transform.py`
+
+Transforms nested Hyatt source responses into normalized hotel, room type, and availability records.
+
+### Loading
+
+`ingestion/load.py`
+
+Loads transformed records into PostgreSQL and connects availability records with their normalized database entities.
+
+### Pipeline Run Tracking
+
+`ingestion/pipeline_runs.py`
+
+Tracks pipeline execution status, timestamps, extracted and loaded record counts, and failures.
+
+### End-to-End Pipeline
+
+`ingestion/run_pipeline.py`
+
+Coordinates the complete local pipeline:
+
+```text
+Read Source Files
+       |
+       v
+Start Pipeline Run
+       |
+       v
+Preserve Raw Data
+       |
+       v
+Transform Records
+       |
+       v
+Load PostgreSQL
+       |
+       v
+Complete Pipeline Run
+```
+
+If pipeline execution fails, the run is recorded as failed and the command exits with a nonzero status.
+
+---
+
+## Running the Pipeline
+
+The current local pipeline operates on captured Hyatt JSON responses.
+
+Example:
+
+```bash
+python ingestion/run_pipeline.py \
+  --award-input tests/fixtures/hyatt_award_availability_sample.json \
+  --cash-input tests/fixtures/hyatt_cash_availability_sample.json \
+  --hotel-input tests/fixtures/hyatt_hotel_sample.json \
+  --stay-date 2026-09-22
+```
+
+A successful pipeline run:
+
+* Reads the source JSON files
+* Starts a pipeline execution record
+* Preserves raw source responses
+* Transforms Hyatt data
+* Loads normalized records into PostgreSQL
+* Marks the pipeline run as completed
+* Prints the pipeline run ID
+* Prints extracted and loaded record counts
+* Returns exit code `0`
+
+Failures are recorded and return a nonzero exit code.
 
 ---
 
@@ -101,7 +215,7 @@ The initial PostgreSQL data model contains four primary tables.
 
 Stores hotel-level metadata.
 
-Examples:
+Example fields:
 
 * Hotel ID
 * Hotel name
@@ -115,7 +229,7 @@ Examples:
 
 Stores hotel room types and source identifiers.
 
-Examples:
+Example fields:
 
 * Room type ID
 * Hotel ID
@@ -123,11 +237,13 @@ Examples:
 * Room name
 * Award type
 
+A source room type identifier is unique within a hotel and allows Hyatt source records to be mapped to normalized internal room types.
+
 ### `daily_availability`
 
 Stores historical hotel award availability observations.
 
-Examples:
+Example fields:
 
 * Room type ID
 * Stay date
@@ -138,11 +254,13 @@ Examples:
 * Observed timestamp
 * Pipeline run ID
 
+Each record represents an observed availability state for a room type and stay date.
+
 ### `pipeline_runs`
 
 Tracks individual pipeline executions.
 
-Examples:
+Example fields:
 
 * Pipeline run ID
 * Source
@@ -153,114 +271,141 @@ Examples:
 * Records loaded
 * Error message
 
+The pipeline run ID connects loaded availability observations with the pipeline execution that produced them.
+
 ---
 
 ## Project Structure
 
 ```text
 award-daren/
+
 ├── ingestion/
+│   ├── __init__.py
 │   ├── config.py
-│   └── database.py
+│   ├── database.py
+│   ├── load.py
+│   ├── pipeline_runs.py
+│   ├── raw_storage.py
+│   ├── run_pipeline.py
+│   └── transform.py
 │
-├── warehouse/
+├── tests/
+│   ├── fixtures/
+│   │   ├── hyatt_award_availability_sample.json
+│   │   ├── hyatt_cash_availability_sample.json
+│   │   └── hyatt_hotel_sample.json
+│   ├── test_config.py
+│   ├── test_raw_storage.py
+│   └── test_transform.py
+│
+├── scripts/
 │
 ├── sql/
-│   └── create_tables.sql
-│
-├── dbt/
-├── airflow/
-├── tests/
-│   └── fixtures/
-│
-├── dashboard/
-├── docs/
-├── docker/
+│   ├── create_tables.sql
+│   └── schema.sql
 │
 ├── data/
 │   ├── raw/
 │   └── processed/
 │
+├── docs/
+├── warehouse/
+├── dbt/
+├── airflow/
+├── dashboard/
+├── docker/
+│
+├── compose.yaml
+├── pytest.ini
+├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## Project Status
+## Source Data Strategy
 
-### Current Sprint
+The current pipeline uses captured and sanitized Hyatt source responses rather than making requests to the live Hyatt website during development or automated testing.
 
-**Sprint 1 — First End-to-End Data Pipeline**
+Three source types are currently used:
 
-The goal of Sprint 1 is to build the first working version of the Hyatt data pipeline from source response through PostgreSQL.
+* Hotel metadata
+* Award availability
+* Cash availability
 
-### Completed
+Using captured source data provides several benefits:
 
-* ✅ Project vision and MVP scope
-* ✅ Hyatt data source research
-* ✅ High-level system architecture
-* ✅ PostgreSQL data model
-* ✅ Engineering standards
-* ✅ Local Docker/PostgreSQL development environment
-* ✅ PostgreSQL schema initialization
-* ✅ Reusable Python database connection module
-* ✅ Hyatt award availability sample capture
-* ✅ Hyatt cash availability sample capture
-* ✅ Source-to-database field mapping
-* ✅ Raw Hyatt response storage
-* ✅ Hyatt award availability transformation
-* ✅ Room type transformation
-* ✅ Points price extraction
-* ✅ Cash price mapping prototype
+* Deterministic development
+* Reproducible transformation behavior
+* Safe automated testing
+* Easier debugging
+* Protection against live source changes
+* No dependency on external availability during tests
 
-### In Progress
-
-* 🚧 Load transformed records into PostgreSQL
-* 🚧 Pipeline execution tracking
-* 🚧 SQL verification and data validation
-
-### Next
-
-* ⏳ Complete the first end-to-end pipeline
-* ⏳ Automate Hyatt availability extraction
-* ⏳ Add automated tests and data quality checks
-* ⏳ Expand historical data collection
-* ⏳ Introduce dbt
-* ⏳ Introduce workflow orchestration
-* ⏳ Build analytics and search layers
+Automated Hyatt extraction can be introduced separately in a future iteration without changing the core transformation and loading architecture.
 
 ---
 
-## Sprint 1 Pipeline
+## Raw Data Strategy
 
-Sprint 1 focuses on implementing the core data engineering workflow.
+Award Daren preserves original Hyatt source responses before transformation.
+
+Raw responses are stored using filenames that identify the hotel, source type, pipeline execution, and observation timestamp:
 
 ```text
-1. Capture Hyatt Availability Response
-                  |
-                  v
-2. Store Raw JSON Response
-                  |
-                  v
-3. Transform Source Data
-                  |
-                  v
-4. Load Data into PostgreSQL
-                  |
-                  v
-5. Record Pipeline Execution
-                  |
-                  v
-6. Validate Data with SQL
+data/raw/
+
+└── hyatt_<hotel_id>_<source_type>_run<pipeline_run_id>_<timestamp>.json
 ```
+
+Example:
+
+```text
+hyatt_HNLRW_award_run1_20260813T183000000000Z.json
+```
+
+Separate raw files can be stored for:
+
+```text
+award
+cash
+hotel
+```
+
+Preserving raw source data makes it possible to:
+
+* Reprocess historical responses
+* Debug transformation issues
+* Validate upstream source changes
+* Trace source data to a pipeline execution
+* Improve transformation logic without recollecting data
+
+A future production implementation can extend this design by storing raw artifact paths directly with pipeline run metadata for stronger lineage and replayability.
 
 ---
 
-## Current Transformation Flow
+## Transformation Layer
 
 Hyatt availability responses contain nested room and rate-plan structures.
 
-The transformation layer converts the source response into normalized records used by the PostgreSQL data model.
+The transformation layer converts these source responses into normalized records that match the PostgreSQL data model.
+
+### Hotel Transformation
+
+Hotel metadata is normalized into fields such as:
+
+```text
+hotel_id
+name
+brand
+category
+address
+city
+country
+```
+
+Required fields are validated while optional fields can safely produce `None`.
 
 ### Room Type Transformation
 
@@ -281,11 +426,16 @@ name
 award_type
 ```
 
+Required room type fields are validated before normalized records are produced.
+
 ### Availability Transformation
 
-Award rate plans are identified from Hyatt rate-plan data and transformed into fields such as:
+Award and cash rate plans are combined to produce normalized availability observations.
+
+Normalized fields include:
 
 ```text
+source_room_type_id
 stay_date
 award_available
 points_price
@@ -294,33 +444,99 @@ currency
 observed_at
 ```
 
-The source room type identifier is used during transformation to map availability records to the corresponding internal PostgreSQL `room_type_id`.
+Transformation includes:
+
+* Date conversion
+* Points price conversion to integer values
+* Cash price conversion to `Decimal`
+* Currency normalization
+* Award availability detection
+* Source room type mapping
+* Required-field validation
+
+Transformation logic remains independent from PostgreSQL so it can be tested independently.
 
 ---
 
-## Raw Data Strategy
+## Loading Strategy
 
-Award Daren preserves original Hyatt responses before transformation.
+Transformed records are loaded into PostgreSQL through the loading layer.
 
-Raw responses are stored using timestamped filenames:
+The loader handles:
+
+* Hotel records
+* Room type records
+* Availability records
+* Pipeline run associations
+
+Hotel and room type records can be matched using stable source identifiers, while daily availability records retain the `pipeline_run_id` responsible for creating them.
+
+This provides a foundation for historical analysis and future pipeline lineage.
+
+---
+
+## Pipeline Run Tracking
+
+Every end-to-end execution creates a pipeline run record.
+
+A pipeline run can move through states such as:
 
 ```text
-data/raw/
-└── hyatt_<hotel_id>_<timestamp>.json
+started
+   |
+   v
+completed
 ```
 
-Example:
+or:
 
 ```text
-hyatt_HNLRW_20260813T181226690239Z.json
+started
+   |
+   v
+failed
 ```
 
-Preserving raw source data makes it possible to:
+Successful runs record:
 
-* Reprocess historical responses
-* Debug transformation issues
-* Validate source changes
-* Improve transformation logic without recollecting data
+* Start time
+* Completion time
+* Records extracted
+* Records loaded
+
+Failed runs preserve an error message so pipeline failures can be inspected and debugged.
+
+This provides the first observability layer for Award Daren.
+
+---
+
+## Testing
+
+Award Daren uses `pytest` for automated pipeline testing.
+
+The current test suite covers:
+
+* Database configuration validation
+* Missing required environment variables
+* Raw JSON response storage
+* Raw filename generation
+* Raw file overwrite protection
+* Hyatt hotel transformation
+* Hyatt room type transformation
+* Hyatt availability transformation
+* Missing optional fields
+* Invalid required fields
+* End-to-end transformation using sanitized Hyatt fixtures
+
+Tests use sanitized local fixtures and do not call the live Hyatt website.
+
+Run the complete test suite from the project root:
+
+```bash
+pytest
+```
+
+Current automated tests validate configuration, raw storage, individual transformation functions, and realistic sanitized Hyatt fixture behavior.
 
 ---
 
@@ -330,7 +546,17 @@ The project uses Docker to provide a reproducible PostgreSQL development environ
 
 The Python application connects to PostgreSQL using configuration stored in environment variables rather than hard-coded credentials.
 
-Example workflow:
+Required PostgreSQL configuration includes:
+
+```text
+POSTGRES_HOST
+POSTGRES_PORT
+POSTGRES_DB
+POSTGRES_USER
+POSTGRES_PASSWORD
+```
+
+The general local workflow is:
 
 ```text
 Docker
@@ -339,11 +565,105 @@ Docker
 PostgreSQL 16
    |
    v
-Python ingestion modules
+Python Pipeline
    |
    v
-Transformation + Loading
+Raw Storage
+   |
+   v
+Transformation
+   |
+   v
+PostgreSQL Load
 ```
+
+Environment configuration is validated before database operations are performed.
+
+---
+
+## Sprint 1 Pipeline
+
+Sprint 1 focuses on building the first complete local data engineering workflow.
+
+```text
+1. Capture Hyatt Source Responses
+                  |
+                  v
+2. Store Raw JSON Responses
+                  |
+                  v
+3. Transform Source Data
+                  |
+                  v
+4. Load Data into PostgreSQL
+                  |
+                  v
+5. Record Pipeline Execution
+                  |
+                  v
+6. Run Automated Tests
+                  |
+                  v
+7. Validate Data with SQL
+```
+
+The core end-to-end pipeline is now operational locally using sanitized Hyatt source data.
+
+---
+
+## Project Status
+
+### Current Sprint
+
+**Sprint 1 — First End-to-End Data Pipeline**
+
+The goal of Sprint 1 is to build the first working version of the Hyatt data pipeline from captured source responses through normalized PostgreSQL storage.
+
+### Completed
+
+* ✅ Project vision and MVP scope
+* ✅ Hyatt data source research
+* ✅ High-level system architecture
+* ✅ PostgreSQL data model
+* ✅ Engineering standards
+* ✅ Local Docker/PostgreSQL development environment
+* ✅ PostgreSQL schema initialization
+* ✅ Reusable Python database connection module
+* ✅ Hyatt award availability sample capture
+* ✅ Hyatt cash availability sample capture
+* ✅ Hyatt hotel metadata fixture
+* ✅ Source-to-database field mapping
+* ✅ Raw Hyatt response storage
+* ✅ Hyatt hotel transformation
+* ✅ Hyatt room type transformation
+* ✅ Hyatt award availability transformation
+* ✅ Points price extraction
+* ✅ Cash price transformation
+* ✅ Load transformed records into PostgreSQL
+* ✅ Pipeline execution tracking
+* ✅ End-to-end local pipeline command
+* ✅ Raw source preservation during pipeline execution
+* ✅ Automated pipeline tests
+* ✅ Sanitized Hyatt fixture testing
+* ✅ Required-field validation
+* ✅ Missing optional-field handling
+
+### In Progress
+
+* 🚧 SQL verification and data validation
+* 🚧 Sprint 1 final cleanup and documentation
+
+### Next
+
+* ⏳ Complete Sprint 1 verification
+* ⏳ Expand historical data collection
+* ⏳ Automate Hyatt availability extraction
+* ⏳ Add additional data quality checks
+* ⏳ Introduce dbt
+* ⏳ Introduce workflow orchestration
+* ⏳ Build analytics and search layers
+* ⏳ Introduce monitoring and observability
+* ⏳ Explore cloud deployment
 
 ---
 
@@ -351,25 +671,29 @@ Transformation + Loading
 
 ### Version 1 — Hyatt Data Foundation
 
-Build the core Hyatt data pipeline.
+Build the core Hyatt data platform.
 
 * Hyatt source research
 * Raw data ingestion
 * Data transformation
 * PostgreSQL storage
-* Pipeline tracking
+* Pipeline execution tracking
+* Automated testing
 * Historical availability collection
 * SQL validation
+* Data quality checks
 
 ### Version 2 — Hyatt Analytics & Search
 
-Build the analytical and search layer.
+Build the analytical and application-facing layers.
 
 * Historical availability analysis
 * Award pricing trends
 * Monthly availability calendar
 * Points vs. cash comparisons
 * Hotel search APIs
+* Analytics models
+* Search-oriented datasets
 
 ### Version 3 — Hyatt AI Assistant
 
@@ -382,6 +706,7 @@ Potential capabilities include:
 * Historical pricing insights
 * Flexible-date suggestions
 * Award availability summaries
+* Historical availability reasoning
 
 ### Version 4 — Multi-Provider Platform
 
@@ -394,6 +719,8 @@ Potential hotel programs include:
 * IHG One Rewards
 * Other hotel loyalty programs
 
+The data platform is intended to evolve toward a provider-independent architecture as additional sources are introduced.
+
 ---
 
 ## Future Data Engineering Improvements
@@ -404,13 +731,20 @@ Potential improvements include:
 
 * dbt transformation models
 * Apache Airflow orchestration
+* Automated Hyatt extraction
 * Automated data quality checks
 * Incremental data pipelines
+* Raw data lineage and replay
+* Cloud object storage
 * Cloud data warehouse integration
 * CI/CD pipeline testing
 * Monitoring and observability
+* Pipeline alerting
 * REST APIs
 * Analytics dashboards
+* Historical data backfills
+
+These tools will be introduced when they solve a concrete scaling, reliability, orchestration, analytics, or operational problem rather than being added only for technology coverage.
 
 ---
 
@@ -429,6 +763,8 @@ Topics include:
 * Local Development Setup
 * Engineering Standards
 
+Documentation will continue to evolve alongside the pipeline architecture.
+
 ---
 
 ## Project Philosophy
@@ -442,8 +778,11 @@ The project prioritizes:
 * Relational data modeling
 * Modular Python components
 * Historical data preservation
+* Deterministic transformation behavior
 * Testable pipeline stages
+* Explicit failure handling
+* Pipeline execution tracking
 * Data quality and observability
 * Incremental adoption of industry-standard tools
 
-The goal is not only to build a hotel award search product, but also to demonstrate how a real-world data platform can evolve from a simple Python and PostgreSQL pipeline into a more scalable data engineering system.
+The goal is not only to build a hotel award search product, but also to demonstrate how a real-world data platform can evolve from a local Python and PostgreSQL pipeline into a more scalable, observable, and production-oriented data engineering system.

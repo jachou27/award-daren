@@ -1,6 +1,16 @@
-from ingestion.transform import transform_hotel, transform_room_types, transform_availability
+import json
 from decimal import Decimal
+from pathlib import Path
+
 import pytest
+
+from ingestion.transform import (
+    transform_availability,
+    transform_hotel,
+    transform_hyatt_data,
+    transform_room_types,
+)
+
 
 def test_transform_hotel():
     hotel_data ={
@@ -250,4 +260,39 @@ def test_transform_availability():
             award_data,
             cash_data_missing_currency,
             "2026-09-22"
-        )    
+        )
+
+def test_transform_sanitized_hyatt_fixture():
+    fixture_dir = Path("tests/fixtures")
+
+    award_path = fixture_dir / "hyatt_award_availability_sample.json"
+    cash_path = fixture_dir / "hyatt_cash_availability_sample.json"
+    hotel_path = fixture_dir / "hyatt_hotel_sample.json"
+
+    with award_path.open("r", encoding="utf-8") as file:
+        award_data = json.load(file)
+
+    with cash_path.open("r", encoding="utf-8") as file:
+        cash_data = json.load(file)
+
+    with hotel_path.open("r", encoding="utf-8") as file:
+        hotel_data = json.load(file)
+
+    stay_date = "2026-09-22"
+
+    transformed_data = transform_hyatt_data(
+        award_data,
+        cash_data,
+        hotel_data,
+        stay_date,
+    )
+
+    assert transformed_data["hotel"]["hotel_id"] == "HNLRW"
+    assert len(transformed_data["room_types"]) > 0
+    assert len(transformed_data["availability"]) > 0
+
+    availability = transformed_data["availability"][0]
+
+    assert isinstance(availability["points_price"], int)
+    assert isinstance(availability["cash_price"], Decimal)
+    assert availability["currency"] == availability["currency"].upper()
