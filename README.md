@@ -184,7 +184,7 @@ The current local pipeline operates on captured Hyatt JSON responses.
 Example:
 
 ```bash
-python ingestion/run_pipeline.py \
+python -m ingestion.run_pipeline \
   --award-input tests/fixtures/hyatt_award_availability_sample.json \
   --cash-input tests/fixtures/hyatt_cash_availability_sample.json \
   --hotel-input tests/fixtures/hyatt_hotel_sample.json \
@@ -752,16 +752,13 @@ These tools will be introduced when they solve a concrete scaling, reliability, 
 
 Additional project documentation is available in the `docs/` directory.
 
-Topics include:
-
-* Product Vision
-* MVP Scope
-* Hyatt Data Source Research
-* High-Level Architecture
-* PostgreSQL Data Model
-* Source-to-Database Field Mapping
-* Local Development Setup
-* Engineering Standards
+* [Product Vision](docs/product-vision.md)
+* [Data Source Research](docs/data-source.md)
+* [Source-to-Database Field Mapping](docs/source-field-mapping.md)
+* [Database Design](docs/database.md)
+* [Local Development Setup](docs/local-development.md)
+* [Pipeline Development Guide](docs/pipeline-development.md)
+* [Contributing Guide](docs/contributing.md)
 
 Documentation will continue to evolve alongside the pipeline architecture.
 
