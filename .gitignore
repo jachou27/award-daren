@@ -20,6 +20,7 @@ venv/
 # Local data
 data/raw/*
 data/processed/*
+data/synthetic/*
 
 # Keep empty data folders
 !data/raw/.gitkeep
