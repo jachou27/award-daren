@@ -40,6 +40,7 @@ Award Daren aims to build a structured data platform that can:
 * Automated pipeline testing
 * Sanitized fixture-based testing
 * SQL-based data validation and analytics
+* Amazon S3 cloud object storage
 
 ### Planned Product Features
 
@@ -63,6 +64,7 @@ Award Daren aims to build a structured data platform that can:
 * pytest
 * Git
 * GitHub
+* Amazon S3
 
 ### Planned
 
@@ -105,6 +107,28 @@ Future Analytics Layer
 The current pipeline uses captured and sanitized Hyatt source responses so development and testing remain deterministic and do not depend on the live Hyatt website.
 
 The architecture is designed so that automated extraction, orchestration, analytics tooling, and cloud infrastructure can be introduced incrementally as the project grows.
+
+---
+
+## Cloud Storage
+
+Award Daren uses Amazon S3 as the cloud object storage layer for Hyatt source data and generated synthetic data.
+
+Current S3 structure:
+
+```text
+award-daren-data/
+├── raw/
+│   └── hyatt/
+└── synthetic/
+    └── hyatt/
+```
+- `raw/hyatt/` stores captured Hyatt source data used by the pipeline.
+- `synthetic/hyatt/` stores generated historical Hyatt data used for development, pipeline testing, and future analytics.
+
+The S3 bucket is configured with public access blocked and server-side encryption enabled.
+
+Future pipeline iterations will integrate S3 directly with the ingestion workflow so raw artifacts can be stored and retrieved programmatically.
 
 ---
 
@@ -736,7 +760,6 @@ Potential improvements include:
 * Automated data quality checks
 * Incremental data pipelines
 * Raw data lineage and replay
-* Cloud object storage
 * Cloud data warehouse integration
 * CI/CD pipeline testing
 * Monitoring and observability
