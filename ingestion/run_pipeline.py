@@ -10,7 +10,7 @@ from ingestion.pipeline_runs import (
     complete_pipeline_run,
     fail_pipeline_run,
 )
-from ingestion.raw_storage import save_raw_response
+from ingestion.s3_storage import build_raw_hyatt_key, upload_json
 from ingestion.transform import transform_hyatt_data
 
 
@@ -62,26 +62,29 @@ def main() -> int:
                 with open(hotel_path) as file:
                     hotel_data = json.load(file)
 
-                save_raw_response(
-                    award_data,
+                award_key = build_raw_hyatt_key(
                     hotel_data["hotel_id"],
                     "award",
-                    pipeline_run_id
+                    pipeline_run_id,
                 )
 
-                save_raw_response(
-                    cash_data,
+                upload_json(award_data, award_key)
+
+                cash_key = build_raw_hyatt_key(
                     hotel_data["hotel_id"],
                     "cash",
-                    pipeline_run_id
+                    pipeline_run_id,
                 )
 
-                save_raw_response(
-                    hotel_data,
+                upload_json(cash_data, cash_key)
+
+                hotel_key = build_raw_hyatt_key(
                     hotel_data["hotel_id"],
                     "hotel",
-                    pipeline_run_id
+                    pipeline_run_id,
                 )
+
+                upload_json(hotel_data, hotel_key)
 
                 transformed_data = transform_hyatt_data(
                     award_data,
