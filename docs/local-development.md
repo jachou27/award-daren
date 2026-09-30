@@ -9,6 +9,7 @@ Install the following tools before starting:
 * Docker Desktop
 * Python 3
 * Git
+* AWS CLI
 
 Verify the installations:
 
@@ -17,6 +18,7 @@ docker --version
 docker compose version
 python3 --version
 git --version
+aws --version
 ```
 
 ## 1. Clone the Repository
@@ -46,7 +48,16 @@ POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 ```
 
-The `.env` file contains local credentials and must not be committed to Git.
+Configure the Amazon S3 settings:
+
+```dotenv
+AWS_REGION=us-west-1
+S3_BUCKET_NAME=award-daren-data
+```
+
+The `.env` file contains local configuration and must not be committed to Git.
+
+AWS credentials should not be stored in `.env`. Local AWS authentication is configured separately through the AWS CLI credential provider chain.
 
 ## 3. Start PostgreSQL
 
@@ -154,7 +165,7 @@ python -m pip install -r requirements.txt
 If `requirements.txt` has not been created yet, install the required packages:
 
 ```bash
-python -m pip install "psycopg[binary]" python-dotenv
+python -m pip install "psycopg[binary]" python-dotenv boto3
 ```
 
 Then save the installed dependencies:
@@ -163,7 +174,83 @@ Then save the installed dependencies:
 python -m pip freeze > requirements.txt
 ```
 
-## 7. Verify the Python Database Connection
+## 7. Configure Local AWS Authentication
+
+The Award Daren pipeline uses Amazon S3 as durable object storage for raw Hyatt source artifacts.
+
+Configure a local AWS CLI profile:
+
+```bash
+aws configure --profile award-daren
+```
+
+Enter the AWS Access Key ID and Secret Access Key for an IAM identity with the required Award Daren S3 permissions when prompted.
+
+Do not store AWS credentials in the repository or `.env` file.
+
+Set the AWS profile for the current terminal session:
+
+```bash
+export AWS_PROFILE=award-daren
+```
+
+Verify the active profile:
+
+```bash
+echo $AWS_PROFILE
+```
+
+Expected output:
+
+```text
+award-daren
+```
+
+Verify AWS authentication:
+
+```bash
+aws sts get-caller-identity --profile award-daren
+```
+
+The returned identity should correspond to the IAM identity configured for local Award Daren development.
+
+## 8. Verify Amazon S3 Access
+
+Verify that the configured AWS identity can access the Award Daren S3 bucket:
+
+```bash
+aws s3 ls s3://award-daren-data --profile award-daren
+```
+
+The bucket separates raw and synthetic Hyatt data:
+
+```text
+award-daren-data/
+├── raw/
+│   └── hyatt/
+└── synthetic/
+    └── hyatt/
+```
+
+Raw Hyatt artifacts produced by pipeline runs use the following object key structure:
+
+```text
+raw/hyatt/<hotel_id>/<pipeline_run_id>/<source_type>_<timestamp>.json
+```
+
+For example:
+
+```text
+raw/hyatt/HNLRW/10/award_20260930T011142539654Z.json
+```
+
+Each pipeline run stores the raw award, cash, and hotel source payloads in S3 before transformation.
+
+The `pipeline_run_id` in the S3 object key makes it possible to associate raw source artifacts with the pipeline run that processed them.
+
+AWS authentication uses the standard AWS credential provider chain. The application does not contain hard-coded AWS credentials.
+
+## 9. Verify the Python Database Connection
 
 Make sure PostgreSQL is running:
 
@@ -287,6 +374,32 @@ Local port 5433 → PostgreSQL container port 5432
 
 The Python connection script will also use port `5433` because it reads the same `.env` file.
 
+## AWS Configuration
+
+The S3 integration is configured through the following environment variables:
+
+| Variable         | Description                                    |
+| ---------------- | ---------------------------------------------- |
+| `AWS_REGION`     | AWS region containing the S3 bucket            |
+| `S3_BUCKET_NAME` | S3 bucket used by the Award Daren pipeline     |
+
+The current local configuration is:
+
+```dotenv
+AWS_REGION=us-west-1
+S3_BUCKET_NAME=award-daren-data
+```
+
+AWS credentials are intentionally separate from these application configuration values.
+
+For local development, boto3 obtains credentials through the AWS credential provider chain. Setting:
+
+```bash
+export AWS_PROFILE=award-daren
+```
+
+allows boto3 to use the locally configured `award-daren` AWS CLI profile without hard-coding credentials in Python.
+
 ## Environment File Security
 
 The actual `.env` file must be excluded from Git:
@@ -298,6 +411,8 @@ The actual `.env` file must be excluded from Git:
 ```
 
 The `.env.example` file should be committed because it documents the required variables without including real credentials.
+
+AWS Access Key IDs and Secret Access Keys must not be added to `.env`, `.env.example`, Python source files, documentation, or other committed project files.
 
 Never reuse personal passwords in the local development configuration.
 
@@ -312,6 +427,11 @@ python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
 
+aws configure --profile award-daren
+export AWS_PROFILE=award-daren
+aws sts get-caller-identity --profile award-daren
+aws s3 ls s3://award-daren-data --profile award-daren
+
 docker compose up -d
 docker compose ps
 
@@ -324,4 +444,7 @@ The local environment is ready when:
 * The PostgreSQL container reports a healthy status.
 * The command-line PostgreSQL query succeeds.
 * Python connects to PostgreSQL successfully.
+* AWS authentication succeeds.
+* The configured AWS identity can access the Award Daren S3 bucket.
+* AWS credentials are not stored in the repository.
 * The setup steps are documented and reproducible.
